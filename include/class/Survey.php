@@ -4,7 +4,6 @@ class DataBase {
 	
 	private $connection;
 	
-	
 	// methods
 	
 	private function exec($query){

@@ -9,6 +9,5 @@
  
  include 'config.php';
  require_once FROOT.'include/loader.php';
- echo "string";
  
 ?>

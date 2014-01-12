@@ -22,8 +22,9 @@ explorer friendler */
 
 //echo '<br /><br />Encoded String: '.$encoded; 
 //echo '<br />Decoded String: '.$decoded; 
-
-function Encode($data,$pwd) 
+	global $PWD;
+	$PWD = 'bhmg!##$435353dcvcgxgdg';
+function cryptMe($data,$pwd) 
 { 
     $pwd_length = strlen($pwd); 
     for ($i = 0; $i < 255; $i++) { 
@@ -55,4 +56,11 @@ function hex2bin2($hexdata) {
     }   
     return $bindata; 
 }  
+function encryptMe($data){
+
+	return bin2hex(cryptMe($data,$PWD));
+}
+function decryptMe($data){
+	return cryptMe(hex2bin2($data), $PWD);
+}
 ?>

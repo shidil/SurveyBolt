@@ -6,8 +6,10 @@
  	25-12-2013 11:36 PM
  *
  */
- 
+ session_start();
  include 'config.php';
- require_once FROOT.'include/loader.php';
+ require_once 'include/loader.php';
+ 
+ include 'templates/index.php';
  
 ?>

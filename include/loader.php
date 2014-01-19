@@ -7,5 +7,8 @@
  	25-12-2013 11:36 PM
  *
  */
+	include 'database/DataBase.php';
+	include 'login/UserSystem.php';
+	
 	
 ?>

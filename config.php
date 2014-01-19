@@ -20,7 +20,7 @@ define("DOMAIN", "http://localhost/survey/"); /// Domain root
 ////////////////////   Database   ////////////////////////////
 
 $config['db_host'] = '127.0.0.1';
-$config['db_name'] = 'survey';
+$config['db_name'] = 'surveyMG';
 $config['db_user'] = 'bhmg';
 $config['db_pass'] = 'survey_bhmg';
 

@@ -1,6 +1,6 @@
 <?php
 	
-class DataBase {
+class User {
 	
 	private $connection;
 	

@@ -1,14 +1,14 @@
 <html>
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>Survey Management</title>
+		<title>SurveyBolt | Ultimate survey system</title>
 		<link rel="stylesheet" href="contents/css/style.css" type="text/css" />
 	</head>
 	<body>
 		<div id="wrapper">
 			<div id="content">
 				<div id="header">
-					<div class="logo"><img src="contents/images/logo.png" />
+					<div class="logo"><img src="contents/images/bolt.png" />
 					</div>
 					<nav id="header_nav" class="nav">
 						<ul class="main_nav">
@@ -16,10 +16,13 @@
 								<a href="index.php" >Home</a>
 							</li>
 							<li>
-								<a href="demo.php">Demo</a>
+								<a href="/about">About</a>
 							</li>
 							<li>
-								<a href="about.php">About</a>
+								<a href="/demo">Demo</a>
+							</li>
+							<li>
+								<a href="/register">Register</a>
 							</li>
 						</ul>
 					</nav>

@@ -1,24 +1,57 @@
+body {
+	margin: 0;
+}
 #header {
 	width: 100%;
 	height: 120px;
 	padding: 10px 20px;
+	background: #292929;
 }
 .logo {
 	height: 100%;
 	width: 40%;
 	float: left;
+	position: relative;
 }
-.nav{
+.logo img {
+	position: absolute;
+	top: 25%;
+	padding-left: 36px;
+}
+.nav {
 	width: 56%;
-float: left;
+	float: left;
+	position: relative;
 }
-ul.main_nav{
+ul.main_nav {
 	list-style: none;
+	list-style: none;
+	width: 100%;
+	height: 53%;
+	padding-top: 30px;
+	padding-left: 143px;
 }
-.main_nav li{
-	float:left;
+.main_nav li {
+	float: left;
 }
-.main_nav li a{
-	padding:10px;
-	
+.main_nav li a {
+	padding: 10px;
+	padding: 13px;
+	text-decoration: none;
+	color: #FFF;
+	font-size: 21px;
+	font-family: monospace;
+	-webkit-transition: all 0.4s ease-out;
+	-moz-transition: all 0.4s ease-out;
+	-o-transition: all 0.4s ease-out;
+	transition: all 0.4s ease-out;
+	-ms-transition: all 0.4s ease-out;
+}
+.main_nav li a:hover {
+	color: #F57714;
+	-webkit-transition: all 0.4s ease-out;
+	-moz-transition: all 0.4s ease-out;
+	-o-transition: all 0.4s ease-out;
+	transition: all 0.4s ease-out;
+	-ms-transition: all 0.4s ease-out;
 }

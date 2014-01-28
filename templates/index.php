@@ -49,6 +49,18 @@
 
 					</div>
 				</section>
+				<section id="register">
+					<form action="register.php" method="post">
+						<div><span>Name:</span><input type="text" size="20" placeholder="Full name" name="name"/></div>
+						<div><span>Username:</span><input type="text" size="20" placeholder="username" name="username"/></div>	
+						<div><span>Email:</span><input type="text" size="20" placeholder="Email" name="email"/></div>
+						<div><span>Password:</span><input type="password" size="20" placeholder="password" name="password"/></div>
+						<div><span>Re-enter password:</span><input type="password" size="20" placeholder="password" name="password"/></div>
+				
+							
+						<input type="submit" value="Signup"  />
+					</form>
+				</section>
 				<footer>
 					<div class="footer_container">
 						<div class="fotter_content">

@@ -10,6 +10,13 @@
 				<div id="header">
 					<div class="logo"><img src="contents/images/bolt.png" />
 					</div>
+					<div form action="\login.php" method="post">
+					<input type="text" size="20" placeholder="Username" name="username"/>
+					<input type="password" size="20" placeholder="password" name="password"/>
+					<input type="submit" value="Login"  />
+					</form>
+					<div><a href="forgot.php" >Forgot password?</a></div>
+				</div>
 					<nav id="header_nav" class="nav">
 						<ul class="main_nav">
 							<li>

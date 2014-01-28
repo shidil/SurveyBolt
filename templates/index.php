@@ -55,11 +55,17 @@
 						<div><span>Username:</span><input type="text" size="20" placeholder="username" name="username"/></div>	
 						<div><span>Email:</span><input type="text" size="20" placeholder="Email" name="email"/></div>
 						<div><span>Password:</span><input type="password" size="20" placeholder="password" name="password"/></div>
-						<div><span>Re-enter password:</span><input type="password" size="20" placeholder="password" name="password"/></div>
-				
-							
+						<div><span>Re-enter password:</span><input type="password" size="20" placeholder="password" name="password"/></div>	
 						<input type="submit" value="Signup"  />
 					</form>
+				</section>
+				<section id="login">
+					<form action="login.php" method="post">
+						<span>Username:</span>
+						<div><input type="text" size="20" placeholder="Username" name="username"/></div>
+						<span>Password:</span>
+						<div><input type="text" size="20" placeholder="Password" name="password"/></div>
+						<input type="submit" value="login"/>
 				</section>
 				<footer>
 					<div class="footer_container">

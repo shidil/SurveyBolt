@@ -10,7 +10,7 @@
 				<div id="header">
 					<div class="logo"><img src="contents/images/bolt.png" />
 					</div>
-					<div form action="\login.php" method="post">
+					<div form action="login.php" method="post">
 					<input type="text" size="20" placeholder="Username" name="username"/>
 					<input type="password" size="20" placeholder="password" name="password"/>
 					<input type="submit" value="Login"  />
@@ -64,8 +64,9 @@
 						<span>Username:</span>
 						<div><input type="text" size="20" placeholder="Username" name="username"/></div>
 						<span>Password:</span>
-						<div><input type="text" size="20" placeholder="Password" name="password"/></div>
+						<div><input type="password" size="20" placeholder="Password" name="password"/></div>
 						<input type="submit" value="login"/>
+						
 				</section>
 				<footer>
 					<div class="footer_container">

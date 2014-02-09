@@ -10,6 +10,13 @@
 				<div id="header">
 					<div class="logo"><img src="contents/images/bolt.png" />
 					</div>
+					<div form action="login.php" method="post">
+					<input type="text" size="20" placeholder="Username" name="username"/>
+					<input type="password" size="20" placeholder="password" name="password"/>
+					<input type="submit" value="Login"  />
+					</form>
+					<div><a href="forgot.php" >Forgot password?</a></div>
+				</div>
 					<nav id="header_nav" class="nav">
 						<ul class="main_nav">
 							<li>
@@ -41,6 +48,25 @@
 					<div class="feature">
 
 					</div>
+				</section>
+				<section id="register">
+					<form action="register.php" method="post">
+						<div><span>Name:</span><input type="text" size="20" placeholder="Full name" name="name"/></div>
+						<div><span>Username:</span><input type="text" size="20" placeholder="username" name="username"/></div>	
+						<div><span>Email:</span><input type="text" size="20" placeholder="Email" name="email"/></div>
+						<div><span>Password:</span><input type="password" size="20" placeholder="password" name="password"/></div>
+						<div><span>Re-enter password:</span><input type="password" size="20" placeholder="password" name="password"/></div>	
+						<input type="submit" value="Signup"  />
+					</form>
+				</section>
+				<section id="login">
+					<form action="login.php" method="post">
+						<span>Username:</span>
+						<div><input type="text" size="20" placeholder="Username" name="username"/></div>
+						<span>Password:</span>
+						<div><input type="password" size="20" placeholder="Password" name="password"/></div>
+						<input type="submit" value="login"/>
+						
 				</section>
 				<footer>
 					<div class="footer_container">

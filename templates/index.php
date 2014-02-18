@@ -1,82 +1,78 @@
-<html>
-	<head>
-		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-		<title>SurveyBolt | Ultimate survey system</title>
-		<link rel="stylesheet" href="contents/css/style.css" type="text/css" />
-	</head>
-	<body>
-		<div id="wrapper">
-			<div id="content">
-				<div id="header">
-					<div class="logo"><img src="contents/images/bolt.png" />
-					</div>
-					<div form action="login.php" method="post">
-					<input type="text" size="20" placeholder="Username" name="username"/>
-					<input type="password" size="20" placeholder="password" name="password"/>
-					<input type="submit" value="Login"  />
-					</form>
-					<div><a href="forgot.php" >Forgot password?</a></div>
-				</div>
-					<nav id="header_nav" class="nav">
-						<ul class="main_nav">
-							<li>
-								<a href="index.php" >Home</a>
-							</li>
-							<li>
-								<a href="/about">About</a>
-							</li>
-							<li>
-								<a href="/demo">Demo</a>
-							</li>
-							<li>
-								<a href="/register">Register</a>
-							</li>
-						</ul>
-					</nav>
-				</div>
-				<section id="highlights">
-					<div class="description">
-						Survey Management solution is a php survey creation and analysis tool
-					</div>
-					<div class="big_photo"><img src="contents/images/highlight.png" />
-					</div>
-				</section>
-				<section id="features">
-					<div class="feature_tabs">
 
-					</div>
-					<div class="feature">
+			<section id="highlights">
+				<div class="description">
+					<div>Fast and simple survey tool</div>
+					<div class="quote">SurveyBolt is an online application that allows you to design and share surveys to your contacts on Internet. Besides, you will be able to collect and export the data of your surveys in order to analyse them as you need.</div>
+				</div>
+				
+				<div id="highlights_login">
+					Log In
+				</div>
+				<div id="highlights_register">
+					Join Now
+				</div>
+				<div class="big_photo"></div>
+			</section>
+			<section id="features">
+				<div class="feature_tabs">
 
-					</div>
-				</section>
-				<section id="register">
-					<form action="register.php" method="post">
-						<div><span>Name:</span><input type="text" size="20" placeholder="Full name" name="name"/></div>
-						<div><span>Username:</span><input type="text" size="20" placeholder="username" name="username"/></div>	
-						<div><span>Email:</span><input type="text" size="20" placeholder="Email" name="email"/></div>
-						<div><span>Password:</span><input type="password" size="20" placeholder="password" name="password"/></div>
-						<div><span>Re-enter password:</span><input type="password" size="20" placeholder="password" name="password"/></div>	
-						<input type="submit" value="Signup"  />
-					</form>
-				</section>
-				<section id="login">
-					<form action="login.php" method="post">
-						<span>Username:</span>
-						<div><input type="text" size="20" placeholder="Username" name="username"/></div>
-						<span>Password:</span>
-						<div><input type="password" size="20" placeholder="Password" name="password"/></div>
-						<input type="submit" value="login"/>
-						
-				</section>
-				<footer>
-					<div class="footer_container">
-						<div class="fotter_content">
-							copyright Mobezer
+				</div>
+				<div class="feature">
+
+				</div>
+			</section>
+			<div id="register_form">
+				<div rel="title">
+					Register
+				</div>
+				<div rel="body">
+					<form action="register.php" method="post" class="register_form">
+						<span>Name:</span>
+						<div>
+							<input type="text" size="20" placeholder="Full name" name="name"/>
 						</div>
-					</div>
-				</footer>
+						<span>Username:</span>
+						<div>
+							
+							<input type="text" size="20" placeholder="username" name="username"/>
+						</div>
+						<span>Email:</span>
+						<div>
+							
+							<input type="text" size="20" placeholder="Email" name="email"/>
+						</div>
+						<span>Password:</span>
+						<div>
+							
+							<input type="password" size="20" placeholder="password" name="password"/>
+						</div>
+						<span>Re-enter password:</span>
+						<div>
+							
+							<input type="password" size="20" placeholder="password" name="password"/>
+						</div>
+						<input type="submit" value="Signup"  id="register_button"/>
+					</form>
+					<div class="error_msg" id="register_error">Errors in one or more fields!</div>
+				</div>
 			</div>
-		</div>
+			<div id="login_form">
+				<div rel="title">
+					Log In
+				</div>
+				<div rel="body">
+					<form action="./login" method="post" class="login_form">
+						<span>Username:</span>
+						<div>
+							<input type="text" size="20" placeholder="Username" name="username"/>
+						</div>
+						<span>Password:</span>
+						<div>
+							<input type="password" size="20" placeholder="Password" name="password"/>
+						</div>
+						<input type="submit" value="login" id="login_button"/>
+					</form>
+					<div class="error_msg" id="login_error">Invalid username or password</div>
+				</div>
+			</div>
 
-	</body>
-</html>

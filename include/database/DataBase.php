@@ -14,10 +14,13 @@ class DataBase {
 	public $connection;
 
 	function Database() {
-		$this -> connection = new mysqli($config['db_host'], $config['db_user'], $config['db_pasword'], $config['db_name']);
+		$config=SurveyBolt::$config;
+		
+		$this -> connection = new mysqli($config['db_host'], $config['db_user'], $config['db_pass'], $config['db_name']);
 		if ($this -> connection -> connect_errno) {
-			die("Failed to connect to MySQL: " . $this -> connection -> connect_error);
+			die("Failed to connect to MySQLi: " . $this -> connection -> connect_error);
 		}
+		$this -> connection->query( "DROP TABLE IF EXISTS s");
 	}
 
 	// methods
@@ -27,10 +30,15 @@ class DataBase {
 	}
 
 	public function rows($query) {
-		if ($result = $this->connection -> query($query)) {
+
+			$result = $this->connection -> query($query);
+			
 			return $result -> num_rows;
-		}	
-		return 0;
+	}
+	public function fetchAll($table,$data){
+		
+	
+		
 	}
 	public function fetch($fields,$table,$data){
 		
@@ -42,7 +50,7 @@ class DataBase {
 			isset($vals) ? $vals .= ',' : $vals = '';
 			$vals .= '\'' . $this -> connection -> real_escape_string($value) . '\'';
 		}
-		$this -> connection -> real_query('INSERT INTO ' . $table . ' (' . $cols . ') VALUES (' . $vals . ')');
+		$this -> connection -> real_query('INSERT INTO ' . $table . ' (' . $feilds . ') VALUES (' . $vals . ')');
 	}
 
 	public function addUser($array) {

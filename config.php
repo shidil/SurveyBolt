@@ -13,15 +13,15 @@ $config = array();
 
 ///////////////////// Application  ///////////////////////////
 
-define('FROOT', 'c:\server\www\survey');	// File root of the project
+define('FROOT', 'c:/server/www/survey/');	// File root of the project
 
 define("DOMAIN", "http://localhost/survey/"); /// Domain root
 
 ////////////////////   Database   ////////////////////////////
 
-$config['db_host'] = '127.0.0.1';
-$config['db_name'] = 'surveyMG';
-$config['db_user'] = 'bhmg';
-$config['db_pass'] = 'survey_bhmg';
+$config['db_host'] = 'localhost';
+$config['db_name'] = 'surveymg';
+$config['db_user'] = 'root';
+$config['db_pass'] = '';
 
 ?>

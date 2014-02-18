@@ -1,36 +1,39 @@
 <?php
 include 'User.php';
+
 class UserSystem {
 
 	private $table = "mg_users";
 
 	public function isLoggedIn() {
-		if (!empty($_SESSION['LoggedIn']) && !empty($_SESSION['Username'])) {
-			return false;
+		if (!empty($_SESSION['loggedIn']) && !empty($_SESSION['userName'])) {
+			return true;
 		}
-		return true;
+		return false;
 	}
 	function isUser($name){
 		// sends query to db num_rows function
-		$name=$db->connection->real_escape_string(name);
-		$count=$db->rows("SELECT userID FROM users WHERE userName ='$name';");
+		$name=SurveyBolt::$db->connection->real_escape_string(name);
+		$count=SurveyBolt::$db->rows("SELECT userID FROM users WHERE userName ='$name';");
 		// if number of rows = 0 the user doesn't exist.
 		if($count>0) return true;
 		else return false;
 	}
 	public function login() {
-		$username = mysql_real_escape_string($_POST['username']);
-		$password = md5(mysql_real_escape_string($_POST['password']));
+		$username = $_POST['username'];
+		$password = encryptMe($_POST['password']);
+		
+		$usernameF = SurveyBolt::$db->connection->real_escape_string($username);
+		$passwordF = SurveyBolt::$db->connection->real_escape_string($password);
+		$query="SELECT userID FROM users WHERE userName = '" . $usernameF . "' AND password = '" . $passwordF . "'";
+		$checklogin = SurveyBolt::$db->rows($query);
 
-		$checklogin = mysql_query("SELECT * FROM users WHERE Username = '" . $username . "' AND Password = '" . $password . "'");
-
-		if (mysql_num_rows($checklogin) == 1) {
-			$row = mysql_fetch_array($checklogin);
+		if ($checklogin ==1) {
+			$details = SurveyBolt::$db->fetchAll($this->table,"userName = '" . $usernameF . "' AND password = '" . $passwordF . "'");
 			$email = $row['EmailAddress'];
-
-			$_SESSION['Username'] = $username;
-			$_SESSION['EmailAddress'] = $email;
-			$_SESSION['LoggedIn'] = 1;
+			$_SESSION['userName'] = $username;
+			$_SESSION['email'] = $email;
+			$_SESSION['loggedIn'] = 1;
 			return true;
 		} else {
 			return false;

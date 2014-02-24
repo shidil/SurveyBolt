@@ -3,7 +3,18 @@ include 'User.php';
 
 class UserSystem {
 
-	private $table = "mg_users";
+	private $table = "users";
+	private $user;
+	public function __construct() {
+		$username = $_SESSION['userName'];
+		$email = $_SESSION['email'];
+		$usernameF = Bolt::$db -> connection -> real_escape_string($username);
+		$emailF = Bolt::$db -> connection -> real_escape_string($email);
+		//echo "SELECT * FROM users where userName = '" . $usernameF . "' AND email = '" . $emailF . "'";
+		$details = Bolt::$db -> fetchObject("SELECT * FROM users where userName = '" . $usernameF . "' AND email = '" . $emailF . "'");
+		//var_dump($details);
+		$this -> user = new User($details -> userID, $details -> userName, $details -> fullName, $details -> email, true);
+	}
 
 	public function isLoggedIn() {
 		if (!empty($_SESSION['loggedIn']) && !empty($_SESSION['userName'])) {
@@ -11,29 +22,38 @@ class UserSystem {
 		}
 		return false;
 	}
-	function isUser($name){
+
+	function isUser($name) {
 		// sends query to db num_rows function
-		$name=SurveyBolt::$db->connection->real_escape_string(name);
-		$count=SurveyBolt::$db->rows("SELECT userID FROM users WHERE userName ='$name';");
+		$name = Bolt::$db -> connection -> real_escape_string($name);
+		$count = Bolt::$db -> rows("SELECT userID FROM users WHERE userName ='$name';");
 		// if number of rows = 0 the user doesn't exist.
-		if($count>0) return true;
-		else return false;
+		if ($count > 0)
+			return true;
+		else
+			return false;
 	}
+
+	public function getUser() {
+		return $this -> user;
+	}
+
 	public function login() {
 		$username = $_POST['username'];
 		$password = encryptMe($_POST['password']);
-		
-		$usernameF = SurveyBolt::$db->connection->real_escape_string($username);
-		$passwordF = SurveyBolt::$db->connection->real_escape_string($password);
-		$query="SELECT userID FROM users WHERE userName = '" . $usernameF . "' AND password = '" . $passwordF . "'";
-		$checklogin = SurveyBolt::$db->rows($query);
 
-		if ($checklogin ==1) {
-			$details = SurveyBolt::$db->fetchAll($this->table,"userName = '" . $usernameF . "' AND password = '" . $passwordF . "'");
-			$email = $row['EmailAddress'];
-			$_SESSION['userName'] = $username;
-			$_SESSION['email'] = $email;
+		$usernameF = Bolt::$db -> connection -> real_escape_string($username);
+		$passwordF = Bolt::$db -> connection -> real_escape_string($password);
+		$query = "SELECT userID FROM users WHERE userName = '" . $usernameF . "' AND password = '" . $passwordF . "'";
+		
+		$checklogin = Bolt::$db -> rows($query);
+
+		if ($checklogin == 1) {
+			$details = Bolt::$db -> fetchObject("SELECT * FROM users where userName = '" . $usernameF . "' AND password = '" . $passwordF . "'");
+			$_SESSION['userName'] = $details -> userName;
+			$_SESSION['email'] = $details -> email;
 			$_SESSION['loggedIn'] = 1;
+			$this -> user = new User($details -> userID, $details -> userName, $details -> fullName, $details -> email, true);	
 			return true;
 		} else {
 			return false;
@@ -56,25 +76,35 @@ class UserSystem {
 	}
 
 	public function register() {
-		if (!empty($_POST['username']) && !empty($_POST['password'])) {
-			$username = mysql_real_escape_string($_POST['username']);
-			$fname = mysql_real_escape_string($_POST['fname']);
-			$lname = mysql_real_escape_string($_POST['lname']);
+		if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['name']) && !empty($_POST['email'])) {
+
+			// store all values
+			$username = $_POST['username'];
+			$name = $_POST['name'];
 			$password = encryptMe($_POST['password']);
-			$email = mysql_real_escape_string($_POST['email']);
+			$email = $_POST['email'];
 
-			$checkusername = mysql_query("SELECT * FROM users WHERE Username = '" . $username . "'");
+			$usernameF = Bolt::$db -> connection -> real_escape_string($username);
+			$passwordF = Bolt::$db -> connection -> real_escape_string($password);
+			$nameF = Bolt::$db -> connection -> real_escape_string($name);
+			$emailF = Bolt::$db -> connection -> real_escape_string($name);
 
-			if (mysql_num_rows($checkusername) == 1) {
+			$query = "SELECT userID FROM users WHERE userName = '" . $usernameF . "'";
+			$checklogin = Bolt::$db -> rows($query);
+
+			if ($checklogin == 1) {
 				return false;
+
 			} else {
-				$registerquery = mysql_query("INSERT INTO users (userName, firstName, lastName,email,password) VALUES('$username', '$fname','$lname', '$email','$password')");
-				if ($registerquery) {
+
+				if (Bolt::$db -> insert(array('userName', 'fullName', 'email', 'password'), array($username, $name, $email, $password), 'users')) {
+
 					return true;
 				} else {
 					return false;
 				}
 			}
+
 		}
 	}
 

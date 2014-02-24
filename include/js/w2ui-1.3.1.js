@@ -6862,7 +6862,7 @@ var w2popup = {};
 			$('body').append('<div id="w2ui-lock" '+
 				'	onmousewheel="if (event.stopPropagation) event.stopPropagation(); else event.cancelBubble = true; if (event.preventDefault) event.preventDefault(); else return false;"'+
 				'	style="position: '+(w2utils.engine == 'IE5' ? 'absolute' : 'fixed')+'; z-Index: 1199; left: 0px; top: 0px; '+
-				'		   padding: 0px; margin: 0px; background: url(contents/images/diagonals.png) rgb(255, 255, 255); width: 100%; height: 100%; opacity: 0;"></div>');	
+				'		   padding: 0px; margin: 0px; background: url(http://localhost/survey/contents/images/diagonals.png) rgb(255, 255, 255); width: 100%; height: 100%; opacity: 0;"></div>');	
 			// lock screen
 			setTimeout(function () {
 				$('#w2ui-lock').css({ 

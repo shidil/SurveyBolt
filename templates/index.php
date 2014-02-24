@@ -26,30 +26,30 @@
 					Register
 				</div>
 				<div rel="body">
-					<form action="register.php" method="post" class="register_form">
+					<form action="<?php echo DOMAIN; ?>register" method="post" id="reg_form" class="register_form">
 						<span>Name:</span>
 						<div>
-							<input type="text" size="20" placeholder="Full name" name="name"/>
+							<input type="text" size="20" placeholder="Full name" name="name" id="name"/>
 						</div>
 						<span>Username:</span>
 						<div>
 							
-							<input type="text" size="20" placeholder="username" name="username"/>
+							<input type="email" size="20" placeholder="username" name="username" id="username"/>
 						</div>
 						<span>Email:</span>
 						<div>
 							
-							<input type="text" size="20" placeholder="Email" name="email"/>
+							<input type="text" size="20" placeholder="Email" name="email" id="email"/>
 						</div>
 						<span>Password:</span>
 						<div>
 							
-							<input type="password" size="20" placeholder="password" name="password"/>
+							<input type="password" size="20" placeholder="password" name="password" id="password"/>
 						</div>
 						<span>Re-enter password:</span>
 						<div>
 							
-							<input type="password" size="20" placeholder="password" name="password"/>
+							<input type="password" size="20" placeholder="password" name="passwordconf" id="passwordconf"/>
 						</div>
 						<input type="submit" value="Signup"  id="register_button"/>
 					</form>
@@ -61,7 +61,7 @@
 					Log In
 				</div>
 				<div rel="body">
-					<form action="./login" method="post" class="login_form">
+					<form action="<?php echo DOMAIN; ?>login" method="post" class="login_form">
 						<span>Username:</span>
 						<div>
 							<input type="text" size="20" placeholder="Username" name="username"/>

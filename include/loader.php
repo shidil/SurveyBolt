@@ -12,4 +12,5 @@ include 'functions.php';
 include 'SurveyBolt.php';
 include 'database/DataBase.php';
 include 'login/UserSystem.php';
+include 'survey/SurveySystem.php';
 ?>

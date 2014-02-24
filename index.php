@@ -15,16 +15,18 @@ function getConfig(){
 session_start();
 
 require_once 'include/loader.php';
+Bolt::connect();
 $uSys = new UserSystem;
-SurveyBolt::connect();
+$sSys = new SurveySystem;
+
 
 $rules = array( 
     'login'   => "/login",    // '/picture/some-text/51'
     'logout'   => "/logout",    // '/picture/some-text/51'
+    'about'   => "/about",    // '/picture/some-text/51'
     'register'     => "/register",              // '/album/album-slug'
-    'about'  => "/about",        // '/category/category-slug'
+    'dashboard'  => "/dashboard([/]*)([^/]*)",
     'demo'      => "/demo",          // '/page/about', '/page/contact'
-    'post'      => "/(?'post'[\w\-]+)",                     // '/post-slug'
     'home'      => "/"                                      // '/'
 );
 $uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );
@@ -36,6 +38,10 @@ foreach ( $rules as $action => $rule ) {
         /* now you know the action and parameters so you can 
          * include appropriate template file ( or proceed in some other way )
          */
+         $params=$params[2];
+		 $params=ltrim($params,'?');
+		 $params=string2KeyedArray($params);
+         Bolt::$_get=$params;
         include( FROOT . $action . '.php' );
 
         // exit to avoid the 404 message 
@@ -44,33 +50,4 @@ foreach ( $rules as $action => $rule ) {
 }
 // nothing is found so handle the 404 error
 includeFile('404');
-/*
-
-if ($_GET) {
-	switch ($_GET['action']) {
-		case 'login' :
-			
-			if ($_POST) {
-				if (!$uSys -> isLoggedIn()) {
-					echo $uSys -> login();
-				} else {
-					redirect(DOMAIN . 'dashboard/');
-				}
-			} else {
-				includeFile('login');
-			}
-			break;
-
-		default :
-			//includeFile('header');
-			includeFile('404');
-			//includeFile('footer');
-			break;
-	}
-
-} else {
-	includeFile('header');
-	includeFile('index');
-	includeFile('footer');
-}*/
 ?>

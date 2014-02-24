@@ -9,21 +9,22 @@ body {
 	background: #292929;
 	display: block;
 	position: relative;
+	box-shadow: 0px 2px 5px #090707;
+	margin-bottom: 1px;
 }
 .logo {
 	height: 100%;
 	width: 27%;
 	float: left;
-	margin-left: 124px;
+	margin-left: 12%;
 }
 .logo img {
 	position: absolute;
 	top: 25%;
-	padding-left: 36px;
 }
 .nav {
 	width: 44%;
-	float: left;
+	float: right;
 }
 ul.main_nav {
 	list-style: none;
@@ -41,7 +42,7 @@ ul.main_nav {
 	padding: 13px;
 	text-decoration: none;
 	color: #FFF;
-	font-size: 21px;
+	font-size: 19px;
 	font-family: monospace;
 	-webkit-transition: all 0.4s ease-out;
 	-moz-transition: all 0.4s ease-out;
@@ -98,8 +99,8 @@ ul.main_nav {
 }
 .big_photo {
 	background: url(../images/people.png) no-repeat;
-	width: 476px;
-	height: 364px;
+	width: 34%;
+	height: 65%;
 	background-size: 95%;
 	position: absolute;
 	right: 4%;
@@ -116,37 +117,48 @@ ul.main_nav {
 	left: 13%;
 	letter-spacing: 3px;
 }
+.description div {
+	width: 58%;
+}
 .quote {
 	font-size: 16px;
-	width: 502px;
+	width: 44% !important;
 	font-family: "Open Sans";
 	margin-top: 11px;
 }
 #highlights_login {
-	position: absolute;
 	top: 60%;
 	left: 13%;
 	width: 88px;
+	background: rgb(13, 61, 122);
+}
+#highlights_register {
+	top: 73%;
+	left: 13%;
+	width: 104px;
+	background: rgb(0, 100, 0);
+}
+#highlights_login, #highlights_register {
+	position: absolute;
 	height: 45px;
 	line-height: 45px;
 	padding-left: 11px;
 	font-size: 19px;
-	background: rgb(13, 61, 122);
 	color: white;
 	cursor: pointer;
+	-webkit-transition: all 0.3s ease-out;
+	-moz-transition: all 0.3s ease-out;
+	-o-transition: all 0.3s ease-out;
+	transition: all 0.3s ease-out;
+	-ms-transition: all .3s ease-out;
 }
-#highlights_register {
-	position: absolute;
-	top: 73%;
-	left: 13%;
-	width: 104px;
-	height: 45px;
-	line-height: 45px;
-	padding-left: 11px;
-	font-size: 20px;
-	background: rgb(0, 100, 0);
-	color: white;
-	cursor: pointer;
+#highlights_login:hover, #highlights_register:hover {
+	box-shadow: 0px 0px 3px #3D3D3D;
+	-webkit-transition: all 0.4s ease-out;
+	-moz-transition: all 0.4s ease-out;
+	-o-transition: all 0.4s ease-out;
+	transition: all 0.4s ease-out;
+	-ms-transition: all 0.4s ease-out;
 }
 #register_form {
 	display: none;
@@ -187,11 +199,66 @@ ul.main_nav {
 	position: absolute;
 	top: 86%;
 	left: 20%;
-	display:none;
+	display: none;
 }
 #register_error {
 	position: absolute;
 	top: 90%;
 	left: 20%;
-	display:none;
+	display: none;
+}
+.register_form label.error {
+	margin-left: 10px;
+	width: auto;
+	display: inline;
+}
+.about_text {
+	display: block;
+	width: 54%;
+	color: whiteSmoke;
+	padding: 75px 57px;
+	line-height: 21px;
+}
+#survey_list {
+	margin: 1px;
+}
+#survey_list tr.w2ui-even, tr.w2ui-odd {
+	height: 35px !important;
+}
+#new_survey {
+	padding: 10px 50px;
+	font-size: 22px;
+	font-weight: 500;
+	background: url(../images/plus.png) no-repeat;
+	background-position: 1%;
+	box-shadow: 0px 0px 1px #333;
+}
+#new_survey:hover {
+	background-color: #D5DEE4;
+	cursor: pointer;
+}
+.w2ui-grid .w2ui-grid-body table .w2ui-head > div {
+	padding: 8px 20px;
+	font-size: 12px;
+}
+.w2ui-label {
+line-height: 41px;
+float: left;
+margin-top: 6px;
+margin-bottom: 3px;
+width: 120px;
+padding: 0;
+white-space: nowrap;
+overflow: hidden;
+text-overflow: ellipsis;
+text-align: right;
+min-height: 20px;
+}
+.w2ui-required::before {
+content: '*';
+ position: inherit; 
+margin-top: 5px;
+margin-left: -4px;
+margin-right: 6px;
+color: red;
 }

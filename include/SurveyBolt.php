@@ -7,14 +7,16 @@
  *
  */
  
-class SurveyBolt{
+class Bolt{
 
 public static $db;
 public static $config;
+public static $_get;
+
 public static function connect(){
-	SurveyBolt::$config=getConfig();
+	Bolt::$config=getConfig();
 	
-	SurveyBolt::$db=new DataBase();
+	Bolt::$db=new DataBase();
 }
 
 public static function includeFile($file) {
@@ -25,6 +27,12 @@ public static function redirect($path){
 	header("Location: ".$path."");
 }
 
+public static function isParams()
+{
+	// returns true if count in $_get is >0
+	if(count(Bolt::$_get)>0) return true;
+	return false;
+}
 }
 
 ?>

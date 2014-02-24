@@ -2,24 +2,25 @@
 	
 class User {
 	
-	private $connection;
-	
+	protected $ID;
+	protected $userName;
+	protected $name;
+	protected $email;
+	protected $logged;
 	
 	// methods
 	
-	private function exec($query){
-		
+	function User($ID,$userName,$name,$email,$logged){
+		$this->ID=$ID;
+		$this->userName=$userName;
+		$this->email=$email;
+		$this->name=$name;
+		$this->logged=$logged;
 	}
-	public function addUser(){
-		
+	
+	public function getID(){
+		return $this->ID;
 	}
-	public function removeUser(){
-		
-	}
-	public function addSurvey(){
-		
-	}
-	public function removeSurvey(){}
 }
 
 ?>

@@ -11,7 +11,7 @@ foreach ($surveys as $key => $value) {
 	$records.="cdate: '".$value->date."',";
 	$records.="mdate: '".$value->modified."',";
 	$records.="url: '".DOMAIN."survey/".encryptMe($value->surveyID)."',";
-	$records.="actions: 'Actions'";
+	$records.="actions: '<a href=\"".DOMAIN."dashboard/action=edit&id=".encryptMe($value->surveyID)."\">Edit</a>'";
 	$records.='},';
 	
 }$records= rtrim($records,',');

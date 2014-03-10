@@ -3,11 +3,35 @@
 includeFile('header-logout');
 //$surveys=$sSys->getSurveys();
 $surveyID = decryptMe(Bolt::$_get['id']);
-?>sdsd
+$sSys=new SurveySystem;
+$uSys = new UserSystem;
+$survey= $sSys->getSurveyByID($surveyID);
+if($survey==FALSE){
+		includeFile('survey-404');
+}
+elseif($survey->getAuthor()!=$uSys->getUser()->getID()){
+	includeFile('survey-404');
+}
+else {
+	$records='';
+foreach ($surveys as $key => $value) {
+	$records.='{';
+	$records.="recid: ".($key+1).',';
+	$records.="name: '".$value->surveyName."',";
+	$records.="cdate: '".$value->date."',";
+	$records.="mdate: '".$value->modified."',";
+	$records.="url: '".DOMAIN."survey/".encryptMe($value->surveyID)."',";
+	$records.="actions: '<a href=\"".DOMAIN."dashboard/action=edit&id=".encryptMe($value->surveyID)."\">Edit</a>'";
+	$records.='},';
+	
+}$records= rtrim($records,',');
+
+?>
 <div id="layout" style="width: 100%; height: 85%">
 	<div id="main">
 		<div id="survey_list">
-			<div id="new_survey" onclick="window.location='<?php echo DOMAIN; ?>dashboard/?action=new'">
+			
+			<div id="new_survey" onclick="openPopup()">
 				New Survey
 			</div>
 			<div id="grid" style="width: 100%; height: 500px;"></div>
@@ -25,7 +49,7 @@ $surveyID = decryptMe(Bolt::$_get['id']);
 							{ field: 'name', caption: 'Survey Name', type: 'text' },
 						],	
 						onAdd: function (event) {
-							w2alert('add');
+							openPopup();
 						},
 						onEdit: function (event) {
 							w2alert('edit');
@@ -41,23 +65,11 @@ $surveyID = decryptMe(Bolt::$_get['id']);
 						{ field: 'actions', caption: 'Actions', size: '20%', sortable: false },
 					],
 					records: [
-						{ recid: 1, name: 'John', cdate: 'Doe', url: 'jdoe@gmail.com', mdate: '1/3/2012',actions:'fvvf'},
-						{ recid: 2, name: 'Stuart', cdate: 'Motzart', url: 'motzart@gmail.com', mdate: '4/3/2012' ,actions:'fvvf'},
-						{ recid: 3, name: 'Jin', cdate: 'Franson', url: 'franson@gmail.com', mdate: '2/3/2012' ,actions:'fvvf'},
-						{ recid: 4, name: 'Frank', cdate: 'Ottie', url: 'ottie@gmail.com', mdate: '4/3/2012' ,actions:'fvvf'},
-						{ recid: 5, name: 'Kelly', cdate: 'Silver', url: 'ksilver@gmail.com', mdate: '5/3/2012' ,actions:'fvvf'},
-						{ recid: 6, name: 'Francis', cdate: 'Gatos', url: 'fgotya@gmail.com', mdate: '4/4/2012' ,actions:'fvvf'},
-						{ recid: 7, name: 'Dimas', cdate: 'Welldo', url: 'dimas@gmail.com', mdate: '7/3/2012' ,actions:'fvvf'},
-						{ recid: 8, name: 'Thomas', cdate: 'Bahh', url: 'bahhtee@gmail.com', mdate: '4/3/2012' ,actions:'fvvf'},
-						{ recid: 9, name: 'Ottie', cdate: 'Welldo', url: 'doe@gmail.com', mdate: '4/3/2012' ,actions:'fvvf'},
-						{ recid: 10, name: 'Thomas', cdate: 'Bahh', url: 'jane@gmail.com', mdate: '9/4/2012' ,actions:'fvvf'},
-						{ recid: 11, name: 'Kolya', cdate: 'Doe', url: 'follow@gmail.com', mdate: '4/3/2012' ,actions:'fvvf'},
-						{ recid: 12, name: 'Martha', cdate: 'Motzart', url: 'joe@gmail.com', mdate: '4/3/2012' ,actions:'fvvf'}
+						<?php echo $records; ?>
 					]
 				});	
 			});
 			</script>
-			<?php// $sSys -> printSureyList(); ?>
 		</div>
 	</div>
 </div>
@@ -76,6 +88,52 @@ $surveyID = decryptMe(Bolt::$_get['id']);
 		});
 	}); 
 </script>
+<script type="text/javascript">
+function openPopup () {
+	$().w2form({
+		name: 'foo',
+		url : 'http://localhost/survey/dashboard/?action=edit',
+		style: 'border: 0px; background-color: transparent;',
+		formHTML: '<form id="new_form" method="post" action="<?php echo DOMAIN;?>dashboard/?action=new">'+
+			'<div class="w2ui-page page-0">'+
+			'	<div class="w2ui-label">Survey Name:</div>'+
+			'	<div class="w2ui-field">'+
+			'		<input name="name" type="text" size="35"/>'+
+			'	</div>'+
+			'</div>'+
+			'<div class="w2ui-buttons">'+
+			'	<input type="button" value="Reset" name="reset">'+
+			'	<input type="button" value="Save" name="save">'+
+			'</div></form>',
+		fields: [
+			{ name: 'name', type: 'text', required: true }
+		],
+		actions: {
+			"save": function () { 			
+				var errors = this.validate(true);
+				if (errors.length !== 0) {
+					return;
+				}$('#new_form').submit();
+			},
+			"reset": function () { this.clear(); },
+		}
+	});
+	$().w2popup('open', {
+		title	: 'Create a new Survey',
+		body	: '<div id="form" style="width: 100%; height: 100%;"></div>',
+		style	: 'padding: 15px 0px 0px 0px',
+		width	: 500,
+		height	: 300, 
+		onOpen	: function (event) {
+			event.onComplete = function () {
+				$('#w2ui-popup #form').w2render('foo');
+			}
+		}
+	});
+}
+</script>
+<?php } ?>
 <?php
 includeFile('footer');
 ?>
+

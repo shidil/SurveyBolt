@@ -10,6 +10,9 @@ if ($uSys -> isLoggedIn()) {
 			case 'edit':
 				includeFile('dashboard-edit');
 				break;
+			case 'settings':
+				includeFile('settings');
+					break;
 			default:
 				includeFile('dashboard');
 				break;

@@ -71,10 +71,10 @@
 								<a href="<?php echo DOMAIN; ?>logout" style="background: #388819;border-radius: 26px 26px;">Logout</a>
 							</li>
 							<li style="float:right">
-								<a href="<?php echo DOMAIN; ?>" >Logout</a>
+								<a href="<?php echo DOMAIN; ?>help" >Help</a>
 							</li>
 							<li style="float:right">
-								<a href="<?php echo DOMAIN; ?>logout" >Logout</a>
+								<a href="<?php echo DOMAIN; ?>dashboard/?action=settings" >Settings</a>
 							</li>
 						</ul>
 					</nav>

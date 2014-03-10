@@ -13,7 +13,7 @@ class UserSystem {
 		//echo "SELECT * FROM users where userName = '" . $usernameF . "' AND email = '" . $emailF . "'";
 		$details = Bolt::$db -> fetchObject("SELECT * FROM users where userName = '" . $usernameF . "' AND email = '" . $emailF . "'");
 		//var_dump($details);
-		$this -> user = new User($details -> userID, $details -> userName, $details -> fullName, $details -> email, true);
+		$this -> user = new User($details -> userID, $details -> userName, $details -> fullName, $details -> email,$details->password, true);
 	}
 
 	public function isLoggedIn() {
@@ -53,7 +53,7 @@ class UserSystem {
 			$_SESSION['userName'] = $details -> userName;
 			$_SESSION['email'] = $details -> email;
 			$_SESSION['loggedIn'] = 1;
-			$this -> user = new User($details -> userID, $details -> userName, $details -> fullName, $details -> email, true);	
+			$this -> user = new User($details -> userID, $details -> userName, $details -> fullName, $details -> email,$details->password, true);	
 			return true;
 		} else {
 			return false;

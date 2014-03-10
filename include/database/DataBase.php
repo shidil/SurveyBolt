@@ -92,16 +92,9 @@ class DataBase {
 			}
 		}
 	}
-
-	public function removeUser() {
-
-	}
-
-	public function addSurvey() {
-
-	}
-
-	public function removeSurvey() {
+	public function update(){
+		
+		
 	}
 
 }

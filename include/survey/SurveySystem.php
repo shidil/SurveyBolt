@@ -9,10 +9,10 @@ class SurveySystem {
 	function isSurvey($survey) {
 		// if the parameter is integer we search for surveyID
 		if (is_numeric($survey))
-			$this -> isSurveyID($survey);
+			return $this -> isSurveyID($survey);
 		// if parameter is string we search for surveyName
 		elseif (is_string($survey))
-			$this -> isSurveyName($survey);
+			return $this -> isSurveyName($survey);
 	}
 
 	function isSurveyName($name) {
@@ -31,14 +31,24 @@ class SurveySystem {
 		// sends query to db num_rows function
 
 		$id = Bolt::$db -> connection -> real_escape_string($id);
-		$count = Bolt::$db -> rows("SELECT surveyID FROM '$this->table' WHERE surveyID ='$id';");
+		$count = Bolt::$db -> rows("SELECT surveyName FROM $this->table WHERE surveyID =$id;");
 		// if number of rows = 0 the user doesn't exist.
 		if ($count > 0)
 			return true;
 		else
 			return false;
 	}
-
+	public function getSurveyByID($id){
+		if($this->isSurvey($id)){
+			$surveyID = Bolt::$db -> connection -> real_escape_string($id);
+			$details=Bolt::$db->fetchObject("SELECT * FROM surveys WHERE surveyID = " . $surveyID);
+			$survey = new Survey($details->surveyID,$details->surveyName,$details->author);
+			return $survey;
+		}
+		else {
+			return false;
+		}
+	}
 	public function getSurveys() {
 
 	}

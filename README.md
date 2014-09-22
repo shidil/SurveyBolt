@@ -1,4 +1,7 @@
 SurveyBolt
 ==========
 
-SurveyBolt is an online survey system written in PHP
+SurveyBolt
+=============================
+
+SurveyBolt is an online survey system written in PHP.

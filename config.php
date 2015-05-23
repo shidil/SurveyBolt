@@ -21,7 +21,7 @@ define("DOMAIN", "http://survey-rasterproject.rhcloud.com/"); /// Domain root
 
 $config['db_host'] = getenv("OPENSHIFT_MYSQL_DB_HOST");
 $config['db_name'] = 'surveymg';
-$config['db_user'] = 'adminl5I58R9 ';
+$config['db_user'] = 'adminl5I58R9';
 $config['db_pass'] = 'fz691tf3gcZV';
 
 ?>

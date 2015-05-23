@@ -3,11 +3,12 @@
 includeFile('header');
 includeFile('index');
 ?>
-<br/>
-Registration successfull.
+<script>
+	$(document).ready(function() {
+		w2alert('Registration successfull.');
+	}); 
+</script>
 
-<br/>
-<a href="./login/">Login now!</a>
 <?php
 
 includeFile('footer');

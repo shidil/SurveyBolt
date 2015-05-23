@@ -7,11 +7,12 @@ $records='';
 foreach ($surveys as $key => $value) {
 	$records.='{';
 	$records.="recid: ".($key+1).',';
-	$records.="name: '".$value->surveyName."',";
+        $records.="sID: '".encryptMe($value->surveyID)."',";
+	$records.="sname: '".$value->surveyName."',";
 	$records.="cdate: '".$value->date."',";
 	$records.="mdate: '".$value->modified."',";
-	$records.="url: '".DOMAIN."survey/".encryptMe($value->surveyID)."',";
-	$records.="actions: '<a href=\"".DOMAIN."dashboard/action=edit&id=".encryptMe($value->surveyID)."\">Edit</a>'";
+	$records.="url: '<a href=\"".DOMAIN."app/".encryptMe($value->surveyID)."\">".DOMAIN."app/".encryptMe($value->surveyID)."</a>',";
+	$records.="actions: '<a style=\"background: url(../contents/images/pie.png) no-repeat left;background-size:30%;padding: 5px 5px 5px 29px;border-right: 1px solid #867474;\"href=\"".DOMAIN."dashboard/action=analyze&id=".encryptMe($value->surveyID)."\">Analyze</a><a style=\"background: url(../contents/images/pen.png) no-repeat left;background-size: 44%;padding: 7px 5px 8px 29px;border-right: 1px solid #867474;\"href=\"".DOMAIN."dashboard/action=edit&id=".encryptMe($value->surveyID)."\">Edit</a><a style=\"background: url(../contents/images/del.png) no-repeat left;background-size: 39%;padding: 7px 0px 8px 29px;\"href=\"#\" onclick=\"deleteSurvey(".encryptMe($value->surveyID).")\">Delete</a>'";
 	$records.='},';
 	
 }$records= rtrim($records,',');
@@ -27,15 +28,15 @@ foreach ($surveys as $key => $value) {
 			<script type="text/javascript">
 			$(function () {
 				$('#grid').w2grid({ 
-					name: 'surveys', 
+					name: 'surveyslist', 
 					show: { lineNumbers: true ,
 									toolbar: true,
 									toolbarAdd: true,
 									toolbarDelete: true,
-									toolbarEdit: true
+									toolbarEdit: false
 						},
 						searches: [				
-							{ field: 'name', caption: 'Survey Name', type: 'text' },
+							{ field: 'sname', caption: 'Survey Name', type: 'text' },
 						],	
 						onAdd: function (event) {
 							openPopup();
@@ -44,22 +45,30 @@ foreach ($surveys as $key => $value) {
 							w2alert('edit');
 						},
 						onDelete: function (event) {
-							console.log('delete has default behaviour');
-						},
-					columns: [				
-						{ field: 'name', caption: 'Survey Name', size: '26%', sortable: true },
-						{ field: 'cdate', caption: 'Created', size: '15%', sortable: true },
-						{ field: 'mdate', caption: 'Modified', size: '15%', sortable: true },
-						{ field: 'url', caption: 'URL', size: '20%', sortable: false },
-						{ field: 'actions', caption: 'Actions', size: '20%', sortable: false },
+							  var ID=w2ui['surveyslist'].get(w2ui['surveyslist'].getSelection()).sID;
+                                                    console.log( w2ui['surveyslist'].get(w2ui['surveyslist'].getSelection()).sID);
+                                                       $.post("<?php echo DOMAIN; ?>ajax.php", {
+                                                         action:'delS',
+                                                        sID: ID
+                                                }).done(function(data) {
+							console.log(data);
+						});
+                                            },
+					columns: [{ field: 'sname', caption: 'Survey Name', size: '26%', resizable:true,sortable: true },
+						// { field: 'sID', caption: '', size: '0%', resizable:true,sortable: false },
+                                                { field: 'cdate', caption: 'Created', size: '14%', resizable:true,sortable: true },
+						{ field: 'mdate', caption: 'Modified', size: '14%', resizable:true,sortable: true },
+						{ field: 'url', caption: 'URL', size: '23%', resizable:true,sortable: false },
+						{ field: 'actions', caption: 'Actions', size: '20%', resizable:true,sortable: false }
 					],
 					records: [
 						<?php echo $records; ?>
 					]
-				});	
+				});	w2ui['surveyslist'].toggleColumn('sID');
 			});
+                        
 			</script>
-			<?php// $sSys -> printSureyList(); ?>
+			
 		</div>
 	</div>
 </div>

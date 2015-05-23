@@ -49,7 +49,10 @@ class DataBase {
 		return $rows;
 
 	}
+	public function query($query) {
 
+		return $this -> connection -> query($query);
+	}
 	public function fetch($field, $table, $data) {
 
 		$result = $this -> connection -> query($query);
@@ -58,6 +61,7 @@ class DataBase {
 	}
 
 	public function fetchObject($query) {
+            //echo $query;
 		$result = $this -> connection -> query($query);
 		$obj = $result -> fetch_object();
 		return $obj;
@@ -92,10 +96,23 @@ class DataBase {
 			}
 		}
 	}
-	public function update(){
-		
+	public function update($table,$feilds,$values,$where){
+          
+		$query='UPDATE `'.$table.'` SET ';
+                foreach ($feilds as $i => $value){
+			$query.='`'.$feilds[$i].'`=\''.$this -> connection -> real_escape_string($values[$i]).'\',';
+		}
+                $query=  rtrim($query, ',');
+		$query.='  WHERE '.$where;
+                //echo $query;
+		return $this -> connection -> query($query);
 		
 	}
-
+	public function close(){
+		//$this->connection->close();
+	}
+	public function escape($value){
+		return $this->connection->escape_string($value);
+	}
 }
 ?>

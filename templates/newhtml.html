@@ -1,0 +1,342 @@
+
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>SurveyBolt | Ultimate survey system</title>
+
+        <link rel="stylesheet" href="http://localhost/survey/contents/css/w2ui-1.3.1.min.css" type="text/css" />
+        <link rel="stylesheet" href="http://localhost/survey/contents/css/style.css" type="text/css" />
+        <link rel="stylesheet" href="http://localhost/survey/contents/css/jquery.jqplot.min.css" type="text/css" />
+        <script src="http://localhost/survey/include/js/jquery-1.8.3.min.js" type="text/javascript"></script>
+        <script src="http://localhost/survey/include/js/w2ui-1.3.1.js" type="text/javascript"></script>
+        <script src="http://localhost/survey/include/js/jquery.validate.min.js" type="text/javascript"></script>
+                <!--[if lt IE 9]><script language="javascript" type="text/javascript" src="http://localhost/survey/include/js/excanvas.min.js"></script><![endif]-->
+        <script language="javascript" type="text/javascript" src="http://localhost/survey/include/js/jquery.jqplot.min.js"></script>
+        <script type="text/javascript" src="http://localhost/survey/include/js/plugins/jqplot.canvasTextRenderer.min.js"></script>
+        <script type="text/javascript" src="http://localhost/survey/include/js/plugins/jqplot.canvasAxisLabelRenderer.min.js"></script> 
+        <script type="text/javascript" src="http://localhost/survey/include/js/plugins/jqplot.barRenderer.min.js"></script>
+        <script type="text/javascript" src="http://localhost/survey/include/js/plugins/jqplot.pieRenderer.min.js"></script>
+        <script type="text/javascript" src="http://localhost/survey/include/js/plugins/jqplot.categoryAxisRenderer.min.js"></script>
+        <script type="text/javascript" src="http://localhost/survey/include/js/plugins/jqplot.pointLabels.min.js"></script>
+        <script type="text/javascript" src="http://localhost/survey/include/js/plugins/jqplot.highlighter.min.js"></script>
+        <script type="text/javascript" src="http://localhost/survey/include/js/plugins/jqplot.dateAxisRenderer.min.js"></script>
+
+        <style type="text/css">
+            #header {
+                width: 100%;
+                height: 11%;
+                padding: 10px 0px;
+                background: #292929;
+                display: block;
+                position: relative;
+                box-shadow: 0px 2px 5px #090707;
+                margin-bottom: 1px;
+            }
+            .logo {
+                height: 100%;
+                width: 26%;
+                float: left;
+                margin-left: 2%;
+            }
+            .logo img {
+                position: absolute;
+                top: 25%;
+                width: 18%;
+            }
+            .nav {
+                width: 58%;
+                float: left;
+            }
+            ul.main_nav {
+                list-style: none;
+                list-style: none;
+                width: 100%;
+                height: 53%;
+                /* padding-top: 30px; */
+                padding-left: 143px;
+                margin: 0;
+            }
+        </style>
+        <link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700' rel='stylesheet' type='text/css' />
+        <META HTTP-EQUIV="Pragma" CONTENT="no-cache">
+
+    </head>
+    <body>
+        <div id="wrapper">
+            <div id="content">
+                <div id="header">
+                    <div class="logo">
+                        <a href="http://localhost/survey/"><img src="http://localhost/survey/contents/images/bolt.png" /></a>
+                    </div>
+
+                    <nav id="header_nav" class="nav">
+                        <ul class="main_nav">
+                            <li style="float:right">
+                                <a href="http://localhost/survey/logout" style="background: #388819;border-radius: 26px 26px;">Logout</a>
+                            </li>
+                            <li style="float:right">
+                                <a href="http://localhost/survey/dashboard/?action=help" >Help</a>
+                            </li>
+                            <li style="float:right">
+                                <a href="http://localhost/survey/dashboard/?action=settings" >Settings</a>
+                            </li>
+                            <li style="float:right">
+                                <a href="http://localhost/survey/dashboard" >Dashboard</a>
+                            </li>
+                        </ul>
+                    </nav>
+                    <div id="welcome_text">Welcome Fuller Man</div>
+                </div>
+<div id="loading"></div>
+<div id="content_design" style="display: none">
+    <div id="design_body">
+<h3>Themes</h3>
+<div id="design_form">
+	<form action="" method="post">
+		
+            <div><input type="radio" name="design1" value="1">
+		<img src="http://localhost/survey/contents/images/design1.png" style="width:100; "/>Notebook</div>
+		<div><input type="radio" name="design1" value="2">
+		<img src="http://localhost/survey/contents/images/design2.png" style="width:100; "/>Theme 2</div>
+		<div><input type="radio" name="design1" value="3">
+		<img src="http://localhost/survey/contents/images/design3.png" style="width:100; "/>Theme 3</div>
+		<div><input type="radio" name="design1" value="4">
+		<img src="http://localhost/survey/contents/images/design4.png" style="width:100; "/>Theme 4</div>
+		<div><input type="submit" value="Save" id="login_button"></div>
+		
+	</form>
+</div>
+</div>
+</div>
+<div id="layout" style="width: 100%; height: 85%;position: relative" >
+	
+	<div id="edit_name">
+				<fieldset style="margin: 5px;padding: 4px;border: 1px solid #B6B6B6;">
+					<legend>Name</legend>
+					<div class="field_body">
+                                            <input rel="73cd76" type="text" value="Cricket Poll 2014" id="survey_name"/>
+						<button id="survey_name_save">Save</button>
+					</div>
+				</fieldset>
+			</div>
+    <div id="main" style="display: none">
+		<div id="survey_list">
+			
+			
+			<div id="grid" style="width: 99%; height: 500px;"></div>
+                        <div id="access_control" style="width: 99%;height: 500px">
+                            <div id="access_container" style="width: 99%;height: 500px">
+                                <h2>Select a strategy</h2>
+                                <div class="access_item">
+                                    <span>Public</span>
+                                    <input type="radio" name="access" value="public" /> 
+                                    <span>Password protected</span>
+                                    <input type="radio" name="access" value="public" /> 
+                                </div>
+                            </div>
+                        </div>
+		</div>
+            
+	</div>
+</div>
+<div id="type_select">
+				<div rel="title">
+					Choose a question type
+				</div>
+				<div rel="body">
+					
+					<span style="margin-top: 36px;display: block;margin-left: 30px;">Question type:</span>
+					<div id="type_item"  style="margin-top: 20px; display: block;margin-left: 30px;">
+						<!--<div value="">- Select a question type -</div>-->
+						<div value="TXT">Text</div>
+						<div value="PARA">Paragraph text</div>
+                                                <div value="NUM">Number</div>
+						<div value="DATE">Date</div>
+						<div value="TF">True of False</div>
+						<div value="MC">Multiple choice</div>
+						<div value="CB">Check boxes</div>
+						<div value="CL">Choose from a list</div>
+	
+					</div>
+					
+					
+				</div>
+			</div>
+<script type="text/javascript">
+	var pstyle = 'border: 1px solid #dfdfdf; padding: 0px;';
+	var config = {
+	layout: {
+		name: 'layout',
+		padding: 0,
+		panels: [
+			{ type: 'top', size: 90, resizable: false, content:$('#edit_name').html(),style:'padding: 0px 9px 0px 3px;border-bottom:1px solid rgb(196, 196, 196)' },
+			{ type: 'left', size: 200, resizable: true, minSize: 120 },
+			{ type: 'main', overflow: 'hidden', 
+				content : $('#main').html(),
+			style : pstyle + 'border-top: 0px;'
+			}
+		]
+	},
+	sidebar: {
+		name: 'sidebar',
+		nodes: [ 
+			{ id: 'general', text: 'Edit survey', group: true, expanded: true, nodes: [
+				{ id: 'questions', text: 'Questions', img: 'icon-page',selected:true },
+				{ id: 'design', text: 'Design', img: 'icon-page' },
+				{ id: 'access', text: 'Access Control', img: 'icon-page' },
+				{ id: 'publish', text: 'Publication', img: 'icon-page' }
+			]}
+		],
+		onClick: function (event) {
+                    switch (event.target) {
+                        case 'questions':
+                        window.location=                        break;
+			case 'design':
+			window.location=			break;
+                        case 'access':
+			window.location=			break;
+		}
+            }
+	}
+};
+
+$(function () {
+	// initialization
+	$('#layout').w2layout(config.layout);
+	w2ui.layout.content('left', $().w2sidebar(config.sidebar));
+        });
+	
+</script>
+<script type="text/javascript">
+			$(function () {
+				$('#grid').w2grid({ 
+					name: 'questions', 
+					show: { lineNumbers: true ,
+									toolbar: true,
+									toolbarAdd: true,
+									toolbarDelete: true,
+									toolbarEdit: true
+						},
+						searches: [				
+							{ field: 'title', caption: 'Question title', type: 'text' }
+						],	
+						onAdd: function (event) {
+							addQuestion();
+						},
+						onEdit: function (event) {
+							w2alert('edit');
+						},
+						onDelete: function (event) {
+                                                    var ID=w2ui['questions'].get(w2ui['questions'].getSelection()).qID;
+                                                    console.log( w2ui['questions'].get(w2ui['questions'].getSelection()).qID);
+                                                       $.post("http://localhost/survey/ajax.php", {
+                                                         action:'delQ',
+                                                        qID: ID
+                                                }).done(function(data) {
+							console.log(data);
+                                                    });
+						},
+					columns: [				
+						{ field: 'title', caption: 'Question Title', size: '60%', resizable: true,sortable: true },
+						{ field: 'type', caption: 'Type', size: '40%', resizable: true,sortable: true },
+                                                { field: 'qID', caption: 'QID', size: '0%', sortable: true }
+					],
+					records: [
+						{recid: 1,qID: '77cc',title: 'You likes cricket?',type: 'True or false',},{recid: 2,qID: '77cd',title: 'Do you watch cricket',type: 'Checkboxes',},{recid: 3,qID: '77ce',title: 'Which format do you like the most?',type: 'Mulpiple choice',},{recid: 4,qID: '77cf',title: 'Who is your favorite cricketer',type: 'Text box',},{recid: 5,qID: '77c8',title: 'Which team is your favourite',type: 'Choose from a list',}					]
+				});	w2ui['questions'].toggleColumn('qID');
+                               
+			});
+			</script>
+<script type="text/javascript">
+function openPopup (type) {
+	var form='<form id="new_form" method="post" action="http://localhost/survey/dashboard/?action=edit&id=73cd76">'+
+			'<div class="w2ui-page page-0">'+
+                        '<div style="overflow: scroll;height: 326px;">'+
+			'	<div class="w2ui-label">Question Title</div>'+
+			'	<div class="w2ui-field">'+
+			'		<input name="title" type="text" size="35" placeholder="wording.."/>'+
+			'	</div>'+
+			'	<div class="w2ui-label">Help Text</div>'+
+			'	<div class="w2ui-field">'+
+			'		<input name="help" type="text" size="35" placeholder="additinal info.."/>'+
+			'	</div><div class="w2ui-label">Required?</div>'+
+			'	<div class="w2ui-field">'+
+			'		<input name="required" type="checkbox" size="20" placeholder="option.."/>'+
+			'	</div>';
+			
+	
+	if(type=='MC' || type=='CB' || type=='CL'){ form+='<div class="w2ui-label">Option 1</div>'+
+			'	<div class="w2ui-field">'+
+			'		<input name="options[]" type="text" size="20" placeholder="option.." required/>'+
+			'	</div>'+
+			'<div class="w2ui-label">Option 2</div>'+
+			'	<div class="w2ui-field">'+
+			'		<input name="options[]" type="text" size="20" placeholder="option.." required/>'+
+			'	</div>'+
+			'<div class="w2ui-label">Option 3</div>'+
+			'	<div class="w2ui-field">'+
+			'		<input name="options[]" type="text" size="20" placeholder="option.."/>'+
+			'	</div>'+
+			'<div class="w2ui-label">Option 4</div>'+
+			'	<div class="w2ui-field">'+
+			'		<input name="options[]" type="text" size="20" placeholder="option.."/>'+
+			'	</div>';
+			}
+			
+			if(type!='')	form+='<input type="hidden" name="type" value="'+type+'"';
+	form=form+'</div>'+
+			'<div class="w2ui-buttons" style="bottom: 0px;">'+
+			'	<input type="button" value="Reset" name="reset">'+
+			'	<input type="button" value="Save" name="save">'+
+			'</div></div></form>';
+			var a=parseInt(Math.random()*100);
+	$().w2form({
+		name: ''+a,
+		url : 'http://localhost/survey/dashboard/?action=edit&id=73cd76',
+		style: 'border: 0px; background-color: transparent;',
+		formHTML: form,
+		fields: [
+			{ name: 'title', type: 'text', required: true },
+			{ name: 'help', type: 'text', required: false},
+			{ name: 'required', type: 'checkbox', required: false},
+		],
+		actions: {
+			"save": function () { 			
+				var errors = this.validate(true);
+				if (errors.length !== 0) {
+					return;
+				}$('#new_form').submit();
+			},
+			"reset": function () { this.clear(); },
+		}
+	});
+	$().w2popup('open', {
+		title	: 'Create a new Survey',
+		body	: '<div id="form" style="width: 100%; height: 100%;"></div>',
+		style	: 'padding: 15px 0px 0px 0px',
+		width	: 500,
+		height	: 450, 
+		onOpen	: function (event) {
+			event.onComplete = function () {
+				$('#w2ui-popup #form').w2render(''+a);
+				form='';
+			}
+		}
+	});
+}
+</script>
+
+	<script type="text/javascript" src="http://localhost/survey/include/js/site.js"></script><footer id="footer">
+		<div class="container">
+			<div style="padding: 46 343;float: left;">
+				(c) SurveyBolt 2014
+			</div>
+			<div style="padding: 46 0;float: left;">
+				Powered by Mobezer
+			</div>
+                    <div id="emblom"></div>
+		</div>
+	</footer>
+	</body>
+</html>
+

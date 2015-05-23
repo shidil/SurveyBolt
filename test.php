@@ -9,6 +9,8 @@
 	</body>
 </html>
 <?php
+$s='2014-03-16 10:11:40';
+echo substr($s,8,2);
 	include 'include/encode.php';
 	if($_POST['code'])
 		$data=encryptMe($_POST['code']);

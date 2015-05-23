@@ -1,7 +1,15 @@
 <?php
-include 'Survey.php';
+include FROOT.'include/survey/Survey.php';
+include 'Participant.php';
 include 'Question.php';
-
+include 'TFQuestion.php';
+include 'MCQuestion.php';
+include 'CBQuestion.php';
+include 'CLQuestion.php';
+include 'TXTQuestion.php';
+include 'PARAQuestion.php';
+include 'Answer.php';
+include 'Choice.php';
 class SurveySystem {
 
 	private $table = "surveys";
@@ -61,7 +69,11 @@ class SurveySystem {
 		$details = Bolt::$db -> fetchAll("SELECT * FROM surveys WHERE author = " . $userID);
 		return $details;
 	}
-
+		public function getAllSurveyList($userID) {
+	
+		$details = Bolt::$db -> fetchAll("SELECT * FROM surveys WHERE author = " . $userID);
+		return $details;
+	}
 	public function getSurveyByName($name) {
 		$username = $_POST['username'];
 		$password = encryptMe($_POST['password']);
@@ -82,7 +94,11 @@ class SurveySystem {
 			return false;
 		}
 	}
-
+public function getQuestionsById($surveyId) {
+		$details = Bolt::$db -> fetchAll("SELECT * FROM questions where surveyID=" .$surveyId);
+		return $details;
+	}
+	
 	public function addSurvey() {
 
 		if (!empty($_POST['name'])) {
@@ -103,6 +119,14 @@ class SurveySystem {
 			}
 		}
 	}
-
+        
+        public function deleteQuestion($qID){
+            
+            return Bolt::$db->query('DELETE FROM questions WHERE questionID='.$qID);
+        }
+        public function deleteSurvey($sID){
+            
+            return Bolt::$db->query('DELETE FROM surveys WHERE surveyID='.$sID);
+        }
 }
 ?>

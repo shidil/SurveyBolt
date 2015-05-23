@@ -13,7 +13,7 @@ class UserSystem {
 		//echo "SELECT * FROM users where userName = '" . $usernameF . "' AND email = '" . $emailF . "'";
 		$details = Bolt::$db -> fetchObject("SELECT * FROM users where userName = '" . $usernameF . "' AND email = '" . $emailF . "'");
 		//var_dump($details);
-		$this -> user = new User($details -> userID, $details -> userName, $details -> fullName, $details -> email,$details->password, true);
+		$this -> user = new User($details -> userID, $details -> userName, $details -> fullName, $details -> email,$details->password, $details->prevl, true);
 	}
 
 	public function isLoggedIn() {
@@ -59,6 +59,7 @@ class UserSystem {
 			return false;
 		}
 	}
+	
 
 	public function loginForm() {
 		echo '
@@ -74,14 +75,18 @@ class UserSystem {
     </fieldset>  
     </form> ';
 	}
+	public function getUserList(){
+		$details = Bolt::$db -> fetchAll("SELECT * FROM users");
+		return $details;
+	}
 
 	public function register() {
-		if (!empty($_POST['username']) && !empty($_POST['password']) && !empty($_POST['name']) && !empty($_POST['email'])) {
+		if (!empty($_POST['username']) && !empty($_POST['pass']) && !empty($_POST['name']) && !empty($_POST['email'])) {
 
 			// store all values
 			$username = $_POST['username'];
 			$name = $_POST['name'];
-			$password = encryptMe($_POST['password']);
+			$password = encryptMe($_POST['pass']);
 			$email = $_POST['email'];
 
 			$usernameF = Bolt::$db -> connection -> real_escape_string($username);
@@ -91,13 +96,14 @@ class UserSystem {
 
 			$query = "SELECT userID FROM users WHERE userName = '" . $usernameF . "'";
 			$checklogin = Bolt::$db -> rows($query);
+			$date = date('Y-m-d H:i:s');
 
 			if ($checklogin == 1) {
 				return false;
 
 			} else {
 
-				if (Bolt::$db -> insert(array('userName', 'fullName', 'email', 'password'), array($username, $name, $email, $password), 'users')) {
+				if (Bolt::$db -> insert(array('userName', 'fullName', 'email','dateCreate', 'password'), array($username, $name, $email,$date, $password), 'users')) {
 
 					return true;
 				} else {
@@ -107,6 +113,10 @@ class UserSystem {
 
 		}
 	}
+        public function deleteUser($qID){
+            
+            return Bolt::$db->query('DELETE FROM users WHERE userID='.$qID);
+        }
 
 }
 ?>

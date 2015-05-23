@@ -19,7 +19,6 @@ Bolt::connect();
 $uSys = new UserSystem;
 $sSys = new SurveySystem;
 
-// these are the rules that rewrites the url.
 
 $rules = array( 
     'login'   => "/login",    // '/picture/some-text/51'
@@ -27,14 +26,17 @@ $rules = array(
     'about'   => "/about",    // '/picture/some-text/51'
     'register'     => "/register",              // '/album/album-slug'
     'dashboard'  => "/dashboard([/]*)([^/]*)",
+    'app'  => "/app([/]*)([^/]*)",
     'demo'      => "/demo",          // '/page/about', '/page/contact'
-    'home'      => "/"                                      // '/'
+    'forgot'   => "/forgot",
+    'toc' =>"/toc",
+    'home'      => "/([/]*)([^/]*)"          
+                                // '/'
 );
 $uri = rtrim( dirname($_SERVER["SCRIPT_NAME"]), '/' );
 $uri = '/' . trim( str_replace( $uri, '', $_SERVER['REQUEST_URI'] ), '/' );
 $uri = urldecode( $uri );
 
-// code for parsing get arguments
 foreach ( $rules as $action => $rule ) {
     if ( preg_match( '~^'.$rule.'$~i', $uri, $params ) ) {
         /* now you know the action and parameters so you can 
@@ -45,7 +47,7 @@ foreach ( $rules as $action => $rule ) {
 		 $params=string2KeyedArray($params);
          Bolt::$_get=$params;
         include( FROOT . $action . '.php' );
-
+		Bolt::$db->close();
         // exit to avoid the 404 message 
         exit();
     }

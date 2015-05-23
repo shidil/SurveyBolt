@@ -37,5 +37,23 @@ function string2KeyedArray($string, $delimiter = '&', $kv = '=') {
     }
     return $ka;
   }
-} // string2KeyedArray
+}
+  function getMessage($key){
+      switch ($key) {
+          case 'thanks':
+                    return 'Thank you for completing the survey.';
+          case 'logout':
+              return 'You have been successfully logged out.';
+          default:
+             return false;
+      }
+  }
+  function jsAlert($msg){
+      		echo "	<script>
+	$(document).ready(function() {
+		w2alert('".$msg."');
+	}); 
+</script>";
+  }
+
 ?>

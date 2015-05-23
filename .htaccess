@@ -3,21 +3,20 @@ ErrorDocument 404 /404.html
 # php_value memory_limit 64M
 <IfModule mod_rewrite.c>
 RewriteEngine On
-RewriteBase /survey/
+RewriteBase /
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteRule . /survey/index.php [L]
-#RewriteRule ^login/ /survey/index.php?action=login [L]
+#RewriteRule ^login/ /index.php?action=login [L]
 #RewriteRule ^login /survey/index.php?action=login [L]
 
-#RewriteRule ^register/ /survey/index.php?action=register [L]
-#RewriteRule ^register /survey/index.php?action=register [L]
+#RewriteRule ^register/ /index.php?action=register [L]
+#RewriteRule ^register /index.php?action=register [L]
 
-#RewriteRule ^about/ /survey/index.php?action=about [L]
-#RewriteRule ^about /survey/index.php?action=about [L]
+#RewriteRule ^about/ /index.php?action=about [L]
+#RewriteRule ^about /index.php?action=about [L]
 
 #RewriteCond %{REQUEST_FILENAME} !-f
 #RewriteCond %{REQUEST_FILENAME} !-d
 </IfModule>
-# BEGIN WordPress

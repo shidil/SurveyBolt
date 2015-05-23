@@ -7,9 +7,9 @@ RewriteBase /
 RewriteRule ^index\.php$ - [L]
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule . /survey/index.php [L]
+RewriteRule . /index.php [L]
 #RewriteRule ^login/ /index.php?action=login [L]
-#RewriteRule ^login /survey/index.php?action=login [L]
+#RewriteRule ^login /index.php?action=login [L]
 
 #RewriteRule ^register/ /index.php?action=register [L]
 #RewriteRule ^register /index.php?action=register [L]

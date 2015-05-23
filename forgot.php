@@ -9,7 +9,7 @@ if ($_POST) {
         $uSys = new UserSystem;
         if ($uSys->isUser($username)) {
             $code = encryptMe($username);
-            echo $code;
+            //echo $code;
             includeFile('forgot-2');
         }
 		else {

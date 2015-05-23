@@ -13,15 +13,15 @@ $config = array();
 
 ///////////////////// Application  ///////////////////////////
 
-define('FROOT', 'c:/server/www/survey/');	// File root of the project
+define('FROOT', __DIR__.'/');	// File root of the project
 
-define("DOMAIN", "http://localhost/survey/"); /// Domain root
+define("DOMAIN", "http://survey-rasterproject.rhcloud.com/"); /// Domain root
 
 ////////////////////   Database   ////////////////////////////
 
-$config['db_host'] = 'localhost';
+$config['db_host'] = getenv("OPENSHIFT_MYSQL_DB_HOST");
 $config['db_name'] = 'surveymg';
-$config['db_user'] = 'root';
-$config['db_pass'] = '';
+$config['db_user'] = 'adminl5I58R9 ';
+$config['db_pass'] = 'fz691tf3gcZV';
 
 ?>
